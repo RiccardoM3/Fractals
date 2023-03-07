@@ -3,7 +3,7 @@
 int Fractal::ComputeIterations(Vector2d z0) {
     Vector2d zn = z0;
     int iteration = 0;
-    while (zn.mod() < escapeRadius && iteration < maxIterations) {
+    while (zn.mod() < escapeRadius && iteration < MAX_ITERATIONS) {
         zn = ComputeNext(zn);
         iteration++;
     }

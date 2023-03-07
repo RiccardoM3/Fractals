@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 int main() {
-    Vector2i resolution = {800, 600};
+    Vector2i resolution = {1000, 1000};
     Fractal fractal;
     FractalRenderer renderer(resolution);
     sf::Sprite sprite(renderer.GetTexture());
