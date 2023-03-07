@@ -1,6 +1,12 @@
-add_executable(fractal_app main.cpp)
+set(SOURCES
+    main.cpp 
+    fractal.cpp 
+    fractal_renderer.cpp
+)
 
-find_library(libsfml-dev REQUIRED )
+add_executable(fractal_app ${SOURCES})
+
+find_library(libsfml-dev REQUIRED)
 
 set(SFML_LIBS
     sfml-graphics
