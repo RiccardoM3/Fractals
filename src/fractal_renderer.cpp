@@ -29,6 +29,10 @@ void FractalRenderer::ZoomOut() {
 }
 
 void FractalRenderer::Render(Fractal* fractal) {
+    //TODO: can optimise 'i' out
+    //TODO: parralellise
+    //TODO: don't need to reset alpha every time
+    //TODO: zoom multiplier seems to be incorrectly applied here. zooming towards absolute center instead of camera center. should remove the scale variable and just adjust the bounds
     int i = 0;
     const double scale = (mMaxReal - mMinReal)/mResolution.y;
     for (int y = 0; y < mResolution.y; y++) {
