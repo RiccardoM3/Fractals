@@ -5,16 +5,18 @@
 class Fractal
 {
 public:
-    const static int MAX_ITERATIONS = 75;
+    constexpr static double ESCAPE_RADIUS = 2.0;
     
     int ComputeIterations(Vector2d z0);
-    
-    Vector2d GetConstant();
+
+    int GetMaxIterations() const;
+    void SetMaxIterations(int iterations);
+    Vector2d GetConstant() const;
     void SetConstant(Vector2d constant);
 
-private:
-    Vector2d ComputeNext(Vector2d current);
+protected:
+    virtual Vector2d ComputeNext(Vector2d current) = 0;
 
-    double mEscapeRadius = 2.0;
-    Vector2d mConstant = {0.4, 0.2}; 
+    int mMaxIterations = 100;
+    Vector2d mConstant = {0.1, 0.1}; 
 };

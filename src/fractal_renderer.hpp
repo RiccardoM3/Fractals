@@ -12,9 +12,11 @@ class FractalRenderer
 public:
     FractalRenderer(Vector2i resolution);
 
-    void SetBounds(double maxReal, double minReal, double maxIm, double minIm);
-    void Render(Fractal& fractal);
-    int IterationsToGradient(int iterations) const;
+    void TranslateBounds(double real, double im);
+    void ZoomIn();
+    void ZoomOut();
+    void Render(Fractal* fractal);
+    int IterationsToGradient(Fractal* fractal, int iterations) const;
 
     const sf::Texture& GetTexture() const;
 
@@ -26,6 +28,7 @@ private:
     double mMinReal;
     double mMaxIm;
     double mMinIm;
+    double mZoom;
 
     int num;
 };

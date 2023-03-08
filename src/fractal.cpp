@@ -3,20 +3,22 @@
 int Fractal::ComputeIterations(Vector2d z0) {
     Vector2d zn = z0;
     int iteration = 0;
-    while (zn.mod() < mEscapeRadius && iteration < MAX_ITERATIONS) {
+    while (zn.mod() < ESCAPE_RADIUS && iteration < mMaxIterations) {
         zn = ComputeNext(zn);
         iteration++;
     }
     return iteration;
 }
 
-Vector2d Fractal::ComputeNext(Vector2d current) {
-    const double real = current.x * current.x - current.y * current.y;
-    const double im = 2.0 * current.x * current.y;
-    return Vector2d{real, im} + mConstant;
+int Fractal::GetMaxIterations() const {
+    return mMaxIterations;
 }
 
-Vector2d Fractal::GetConstant() {
+void Fractal::SetMaxIterations(int iterations) {
+    mMaxIterations = iterations;
+}
+
+Vector2d Fractal::GetConstant() const {
     return mConstant;
 }
 
