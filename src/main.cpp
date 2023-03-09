@@ -2,6 +2,7 @@
 #include "fractal.hpp"
 #include "fractal_quadratic.hpp"
 #include "fractal_cubic.hpp"
+#include "fractal_experiment.hpp"
 #include "fractal_renderer.hpp"
 
 #include <iostream>
@@ -56,7 +57,7 @@ void handleKeyPress(Fractal* fractal, FractalRenderer& renderer, sf::Keyboard::K
 
 int main() {
     Vector2i resolution = {1000, 1000};
-    std::unique_ptr<Fractal> fractal = std::make_unique<CubicFractal>();
+    std::unique_ptr<Fractal> fractal = std::make_unique<ExperimentFractal>();
     FractalRenderer renderer(resolution);
     sf::Sprite sprite(renderer.GetTexture());
 
@@ -74,7 +75,6 @@ int main() {
                     handleKeyPress(fractal.get(), renderer, event.key.code);
                     break;
             }
-
         }
 
         renderer.Render(fractal.get());
