@@ -1,4 +1,5 @@
 #include "helpers/vector2.hpp"
+#include "helpers/thread_pool.hpp"
 #include "fractal.hpp"
 #include "fractal_quadratic.hpp"
 #include "fractal_cubic.hpp"
@@ -8,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+
 #include <SFML/Graphics.hpp>
 
 //TODO: needs to be moved into a class. also shouldnt need to pass references for first 2 params
@@ -27,10 +29,10 @@ void handleKeyPress(Fractal* fractal, FractalRenderer& renderer, sf::Keyboard::K
             break;
 
         case sf::Keyboard::W:
-            renderer.TranslateBounds(0, 1);
+            renderer.TranslateBounds(0, -1);
             break;
         case sf::Keyboard::S:
-            renderer.TranslateBounds(0, -1);
+            renderer.TranslateBounds(0, 1);
             break;
         case sf::Keyboard::A:
             renderer.TranslateBounds(-1, 0);
@@ -56,9 +58,13 @@ void handleKeyPress(Fractal* fractal, FractalRenderer& renderer, sf::Keyboard::K
 }
 
 int main() {
-    Vector2i resolution = {1000, 1000};
-    std::unique_ptr<Fractal> fractal = std::make_unique<ExperimentFractal>();
-    FractalRenderer renderer(resolution);
+    unsigned int numThreads = std::thread::hardware_concurrency();
+    std::cout << numThreads << " concurrent threads are supported.\n";
+    ctpl::thread_pool threadPool(numThreads);
+
+    Vector2i resolution(1000, 1000);
+    std::unique_ptr<Fractal> fractal = std::make_unique<CubicFractal>();
+    FractalRenderer renderer(resolution, threadPool, numThreads);
     sf::Sprite sprite(renderer.GetTexture());
 
     sf::RenderWindow window(sf::VideoMode(resolution.x, resolution.y), "Fractal");
