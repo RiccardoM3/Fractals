@@ -28,7 +28,5 @@ private:
     double mMinReal;
     double mMaxIm;
     double mMinIm;
-    double mZoom;
-
-    int num;
+    const int mTranslateSpeed;    // pixel multiplier when translating
 };

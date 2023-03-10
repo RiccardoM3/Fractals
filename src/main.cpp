@@ -27,23 +27,23 @@ void handleKeyPress(Fractal* fractal, FractalRenderer& renderer, sf::Keyboard::K
             break;
 
         case sf::Keyboard::W:
-            renderer.TranslateBounds(0, 0.01);
+            renderer.TranslateBounds(0, 1);
             break;
         case sf::Keyboard::S:
-            renderer.TranslateBounds(0, -0.01);
+            renderer.TranslateBounds(0, -1);
             break;
         case sf::Keyboard::A:
-            renderer.TranslateBounds(-0.01, 0);
+            renderer.TranslateBounds(-1, 0);
             break;
         case sf::Keyboard::D:
-            renderer.TranslateBounds(0.01, 0);
+            renderer.TranslateBounds(1, 0);
             break;
 
         case sf::Keyboard::Q:
-            renderer.ZoomIn();
+            renderer.ZoomOut();
             break;
         case sf::Keyboard::E:
-            renderer.ZoomOut();
+            renderer.ZoomIn();
             break;
 
         case sf::Keyboard::R:
