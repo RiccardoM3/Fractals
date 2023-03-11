@@ -3,6 +3,7 @@
 #include "fractal.hpp"
 #include "fractal_quadratic.hpp"
 #include "fractal_cubic.hpp"
+#include "fractal_quartic.hpp"
 #include "fractal_experiment.hpp"
 #include "fractal_renderer.hpp"
 
@@ -63,7 +64,7 @@ int main() {
     ctpl::thread_pool threadPool(numThreads);
 
     Vector2i resolution(1000, 1000);
-    std::unique_ptr<Fractal> fractal = std::make_unique<CubicFractal>();
+    std::unique_ptr<Fractal> fractal = std::make_unique<QuarticFractal>();
     FractalRenderer renderer(resolution, threadPool, numThreads);
     sf::Sprite sprite(renderer.GetTexture());
 
