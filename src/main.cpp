@@ -64,7 +64,8 @@ int main() {
     ctpl::thread_pool threadPool(numThreads);
 
     Vector2i resolution(1000, 1000);
-    std::unique_ptr<Fractal> fractal = std::make_unique<ExperimentFractal>();
+    std::unique_ptr<Fractal> fractal = std::make_unique<QuadraticFractal>();
+    fractal->SetType(Fractal::Type::NonJulia);
     FractalRenderer renderer(resolution, threadPool, numThreads);
     sf::Sprite sprite(renderer.GetTexture());
 

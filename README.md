@@ -11,7 +11,9 @@ Fractal Maker in C++
     - untick "Native opengl" setting
     - tick the "Disable Access Control" setting
 
-- `export DISPLAY=<windows-ip>:0`
+- Run the following command, or add it to your .bashrc
+    - `export DISPLAY=<windows-ip>:0`
+    - e.g. `export DISPLAY=192.168.0.159:0`
 
 ## Building
 `./build.sh`

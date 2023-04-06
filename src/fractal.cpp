@@ -1,10 +1,17 @@
 #include "fractal.hpp"
 
 int Fractal::ComputeIterations(Vector2d z0) {
-    Vector2d zn = z0;
+    Vector2d z_n = {0, 0};
+    Vector2d constant = mConstant;
+    if (mType == Type::Julia) {
+        z_n = z0;
+    } else {
+        constant = z0;
+    }
+
     int iteration = 0;
-    while (zn.mod() < ESCAPE_RADIUS && iteration < mMaxIterations) {
-        zn = ComputeNext(zn);
+    while (z_n.mod() < ESCAPE_RADIUS && iteration < mMaxIterations) {
+        z_n = ComputeNext(z_n, constant);
         iteration++;
     }
     return iteration;
@@ -24,4 +31,8 @@ Vector2d Fractal::GetConstant() const {
 
 void Fractal::SetConstant(Vector2d constant) {
     mConstant = constant;
+}
+
+void Fractal::SetType(Type type) {
+    mType = type;
 }
